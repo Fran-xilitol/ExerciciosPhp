@@ -66,17 +66,18 @@ class Resolucao implements TextWrapInterface {
           if ($i=0) {
             $cut .= $parte1;
           }
-        else {
-          $cut .= " ".$parte1;}
-        $l = 0;
-        // A palavra em questão pode ser mais extensa que 2 linhas, tendo que ser dividida em mais partes...
-        // Então para garantir que seja dividida em quantas partes necessárias, o resto da palavra volta para ser analisada novamente.
-        $words[$i]=$parte2;
-        $i--;
-      } 
+          else {
+            $cut .= " ".$parte1;
+          }
+          $l = 0;
+          // A palavra em questão pode ser mais extensa que 2 linhas, tendo que ser dividida em mais partes...
+          // Então para garantir que seja dividida em quantas partes necessárias, o resto da palavra volta para ser analisada novamente.
+          $words[$i]=$parte2;
+          $i--;
+        }
+      }
     }
     $lista = explode("\n",$cut);
     return $lista;
   }
-
 }
