@@ -16,22 +16,23 @@ namespace Galoa\ExerciciosPhp\TextWrap;
  */
 class Resolucao implements TextWrapInterface {
 
-  
-    public function textWrap($text, $length){
+
+  public function textWrap($text, $length): array {
 
     $cut = "";
-    // string para vazio que será preenchido
+    // String para vazio que será preenchido.
 
     $words = explode(" ", $text);
-    // separar as palavras do string de entrada em um array de palavras
-    
-    // preenchendo o string de saída:
-    
-    $l = $length; //espaço disponível de cada linha
-    
+    // Separar as palavras do string de entrada em um array de palavras.
+
+    // Preenchendo o string de saída:
+
+    $l = $length;
+    // Espaço disponível de cada linha.
+
     for ($i = 0; $i < count($words); $i++){
-        // observar cada palavra do array
-        
+        // Observar cada palavra do array.
+
         if (strlen($words[$i]) <= $l){
             $cut.=$words[$i];
             $l -= strlen($words[$i]);
@@ -40,12 +41,12 @@ class Resolucao implements TextWrapInterface {
             $cut.="\n".$words[$i];
             $l = $length - strlen($words[$i]);
         }
-        // caso extremo: palavra maior que a linha
+        // Caso extremo: palavra maior que a linha:
         else {
             if($l < $length){
                 $cut.="\n";
             }
-            // garantindo que essa palavra estará iniciando uma linha
+            // Garantindo que essa palavra estará iniciando uma linha.
             $parte1="";
             for($j = 0; $j < $length; $j++){
                 $parte1.=$words[$i][$j];
@@ -56,12 +57,12 @@ class Resolucao implements TextWrapInterface {
             }
             $cut.=$parte1;
             $l = 0;
-            // a palavra em questão pode ser mais extensa que 2 linhas, tendo que ser dividida em mais partes...
-            // então para garantir que seja dividida em quantas partes necessárias, o resto da palavra volta para ser analisada novamente
+            // A palavra em questão pode ser mais extensa que 2 linhas, tendo que ser dividida em mais partes...
+            // Então para garantir que seja dividida em quantas partes necessárias, o resto da palavra volta para ser analisada novamente.
             $words[$i]=$parte2;
             $i--;
         }
-        // adicionar o espaçamento entre as palavras (se não for a última do string)
+        // Adicionar o espaçamento entre as palavras (se não for a última do string).
         if ($i < count($words)-1){
             if ($l > 0){
                 $cut.=" ";
@@ -70,11 +71,9 @@ class Resolucao implements TextWrapInterface {
                 $cut.="\n";
                 $l = $length;
             }
-
         }    
     }
     $lista = explode("\n",$cut);
-
     return $lista;
   }
 
