@@ -27,20 +27,16 @@ class Resolucao implements TextWrapInterface {
 
     $cut = "";
     // String para vazio que será preenchido.
-
     $words = explode(" ", $text);
     // Separar as palavras do string de entrada em um array de palavras.
-
     // Preenchendo o string de saída:
-
     $l = $length;
     // Espaço disponível de cada linha.
-
-    for ($i = 0; $i < count($words); $i++){
-        // Observar cada palavra do array.
-
-        if (strlen($words[$i]) < $l){
-          // Ao adicionar uma palavra, já adicionamos o espaçamento (exceto para a primeira palavra do texto).
+    for ($i = 0; $i < count($words); $i++) {
+      // Observar cada palavra do array.
+      if (strlen($words[$i]) < $l){
+        // Ao adicionar uma palavra, já adicionamos o espaçamento.
+        // (Exceto para a primeira palavra do texto).
           if (i=0){
             $cut.=$words[$i];}
           else{
