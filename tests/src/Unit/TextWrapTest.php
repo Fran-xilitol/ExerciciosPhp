@@ -73,7 +73,7 @@ class TextWrapTest extends TestCase {
    * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
    */
   public function testForVeryLongWord(){
-	  $ret =$this->resolucao->textWrap($this->"então eu disse AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", 10);
+	  $ret =$this->resolucao->textWrap("então eu disse AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", 10);
 	  $this->assertEquals("Então eu", $ret[0]);
 	  $this->assertEquals("disse", $ret[1]);
     $this->assertEquals("AAAAAAAAAA", $ret[2]);
