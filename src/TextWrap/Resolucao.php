@@ -34,20 +34,22 @@ class Resolucao implements TextWrapInterface {
     // Espaço disponível de cada linha.
     for ($i = 0; $i < count($words); $i++) {
       // Observar cada palavra do array.
-      if (strlen($words[$i]) < $l) {
+      if (strlen($words[$i]) <= $length) {
+        if (strlen($words[$i]) < $l) {
         // Ao adicionar uma palavra, já adicionamos o espaçamento.
         // (Exceto para a primeira palavra do texto).
-        if ($i = 0) {
-          $cut .= $words[$i];
+          if ($i == 0) {
+            $cut .= $words[$i];
+          }
+          else {
+            $cut .= " " . $words[$i];
+            $l -= strlen($words[$i]);
+          }
         }
         else {
-          $cut .= " " . $words[$i];
-          $l -= strlen($words[$i]);
+          $cut .= "\n" . $words[$i];
+          $l = $length - strlen($words[$i]);
         }
-      }
-      elseif (strlen($words[$i]) <= $length) {
-        $cut .= "\n" . $words[$i];
-        $l = $length - strlen($words[$i]);
       }
       // Caso extremo: palavra maior que a linha:
       else {
@@ -63,7 +65,7 @@ class Resolucao implements TextWrapInterface {
         for ($k = $length; $k < strlen($words[$i]); $k++) {
           $parte2 .= $words[$i][$k];
         }
-        if ($i = 0) {
+        if ($i == 0) {
           $cut .= $parte1;
         }
         else {
